@@ -1,0 +1,19 @@
+.table {
+  margin-top: 5rem;
+	background-color: #fafafa !important;
+	box-shadow: none !important;
+}
+
+.icons {
+  display: flex !important;
+	align-items: center !important;
+}
+.icons__form {
+  width: 3rem;
+}
+.icons__btn {
+  transition: all .2s !important;
+}
+.icons__btn:hover span svg {
+  color: #303f9fbd !important;
+}

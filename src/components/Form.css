@@ -1,0 +1,39 @@
+.form {
+	display: flex;
+	align-items: center;
+	justify-content: center !important;
+}
+
+.hidden {
+	display: none;
+}
+
+.text-field {
+	margin: 1rem !important;
+}
+
+.save-button {
+	padding: .6rem 2rem !important;
+	margin: 1rem !important;
+}
+
+.save-button:hover {
+  color: white !important;
+}
+
+.ps {
+	left: 90%;
+	height: 3rem;
+	width: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.MuiButton-root {
+  font-size: 1.3rem !important;
+}
+
+.MuiButton-root:hover {
+  color: #3F51B5;
+}
