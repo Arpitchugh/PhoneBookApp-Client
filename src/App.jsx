@@ -22,8 +22,9 @@ function App() {
 					</Route>
 
 					<Route path="/update/:id" exact>
-						<UpdateForm />
-						<List />
+						<Hamburger />
+						<UpdateForm setSubmit={setSubmit} />
+						<List setSubmit={setSubmit} submit={submit} />
 					</Route>
 				</Switch>
 			</Router>

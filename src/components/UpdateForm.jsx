@@ -13,13 +13,16 @@ export function UpdateForm() {
 	const [phone, setPhone] = useState('');
 	const [email, setEmail] = useState('');
 
-	const [response, setResponse] = useState([]);
-
 	const { id } = useParams();
 
 	useEffect(() => {
-		axios.get(`http://localhost:8000/v1/contact/get-one/${id}`);
-	}, []);
+		axios.get(`http://localhost:8000/v1/contact/get-one/${id}`).then((data) => {
+			setFirstName(data.data.data.firstName);
+			setLastName(data.data.data.lastName);
+			setPhone(data.data.data.phone);
+			setEmail(data.data.data.email);
+		});
+	}, [id]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
