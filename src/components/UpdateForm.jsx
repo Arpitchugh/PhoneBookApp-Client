@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 import './Form.css';
 
-export function UpdateForm() {
+export function UpdateForm({ setSubmit }) {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [phone, setPhone] = useState('');
@@ -28,7 +28,7 @@ export function UpdateForm() {
 		e.preventDefault();
 
 		axios
-			.post('http://localhost:8000/v1/contact/add', {
+			.patch(`http://localhost:8000/v1/contact/update/${id}`, {
 				firstName: firstName,
 				lastName: lastName,
 				phone: phone.toString(),
@@ -39,6 +39,7 @@ export function UpdateForm() {
 				setLastName('');
 				setPhone('');
 				setEmail('');
+				setSubmit(true);
 			});
 	};
 
