@@ -35,14 +35,17 @@ function List({ submit, setSubmit }) {
 		});
 	}, [submit]);
 
-	const deleteHandler = (e) => {
-		e.preventDefault();
+	const deleteHandler = (id) => {
+		return (e) => {
+			e.preventDefault();
 
-		const id = e.target.childNodes[0].value;
-
-		axios.delete(`${process.env.REACT_APP_API_URL}/delete-number/${id}`);
-
-		window.location.reload();
+			axios
+				.delete(`http://localhost:8000/v1/contact/delete/${id}`)
+				.then((data) => {
+					setSubmit(true);
+					window.location = '/';
+				});
+		};
 	};
 
 	return (
@@ -71,9 +74,10 @@ function List({ submit, setSubmit }) {
 							</TableCell>
 
 							<TableCell className="icons" align="right">
-								<form onSubmit={deleteHandler} className="icons__form">
-									<input type="hidden" value={phone._id} />
-
+								<form
+									onSubmit={deleteHandler(phone._id)}
+									className="icons__form"
+								>
 									<Button className="icons__btn" type="submit" color="primary">
 										<DeleteIcon className="icons__icon" />
 									</Button>
