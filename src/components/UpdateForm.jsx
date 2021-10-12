@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import axios from 'axios';
 
 import TextField from '@material-ui/core/TextField';
@@ -6,11 +7,19 @@ import Button from '@material-ui/core/Button';
 
 import './Form.css';
 
-export function Form({ setSubmit }) {
+export function UpdateForm() {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [phone, setPhone] = useState('');
 	const [email, setEmail] = useState('');
+
+	const [response, setResponse] = useState([]);
+
+	const { id } = useParams();
+
+	useEffect(() => {
+		axios.get(`http://localhost:8000/v1/contact/get-one/${id}`);
+	}, []);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -27,7 +36,6 @@ export function Form({ setSubmit }) {
 				setLastName('');
 				setPhone('');
 				setEmail('');
-				setSubmit(true);
 			});
 	};
 

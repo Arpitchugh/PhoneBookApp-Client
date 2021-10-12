@@ -23,18 +23,17 @@ const useStyles = makeStyles({
 	},
 });
 
-function List() {
+function List({ submit, setSubmit }) {
 	const classes = useStyles();
 
 	const [response, setResponse] = useState([]);
 
 	useEffect(() => {
-		axios
-			.get(`${process.env.REACT_APP_API_URL}/get-all-numbers`)
-			.then((data) => {
-				setResponse(data.data.data);
-			});
-	}, []);
+		axios.get(`http://localhost:8000/v1/contact/get-all`).then((data) => {
+			setResponse(data.data.data);
+			setSubmit(false);
+		});
+	}, [submit]);
 
 	const deleteHandler = (e) => {
 		e.preventDefault();
@@ -56,8 +55,6 @@ function List() {
 						<TableCell align="right">Phone Number</TableCell>
 
 						<TableCell align="right">Email</TableCell>
-
-						<TableCell align="right">{''}</TableCell>
 					</TableRow>
 				</TableHead>
 
@@ -81,10 +78,7 @@ function List() {
 										<DeleteIcon className="icons__icon" />
 									</Button>
 								</form>
-								<Link
-									className="icons__form"
-									to={`/update-contact/${phone._id}`}
-								>
+								<Link className="icons__form" to={`/update/${phone._id}`}>
 									<Button className="icons__btn" type="submit" color="primary">
 										<EditIcon className="icons__icon" />
 									</Button>
